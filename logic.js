@@ -12,11 +12,9 @@ function properCase(word){
 }
 
 function playRound(chosenButton){
-    let playerCount = 0, computerCount = 0;
-    let playerSelection = chosenButton.textContent;
+    let playerSelection = properCase(String(this.textContent));
     let computerSelection = computerPlay();
-    // Remove problem with case sensitivity.
-    playerSelection = properCase(playerSelection);
+    console.log(playerSelection,computerSelection)
 
     if (playerSelection == computerSelection) {
         return `It's a tie. You both chose ${playerSelection}`;
@@ -25,11 +23,29 @@ function playRound(chosenButton){
              (playerSelection == "Paper" && computerSelection == "Rock") ||
              (playerSelection == "Scissor" && computerSelection == "Paper")) {
         
-        playerCount += 1
-        return `You Win! ${playerSelection} beats ${computerSelection}`;
+        playerCount += 1;
+        const playerScoreBox = document.querySelector('.player-scoreBox')
+        if (document.querySelector('.player-scoreBox > div')){
+            playerScoreBox.removeChild(playerScoreBox.lastElementChild);
+        }
+        const scoreOnScreen = document.createElement('div');
+        scoreOnScreen.textContent = playerCount;
+        playerScoreBox.appendChild(scoreOnScreen);
     }
     else {
         computerCount += 1
-        return `You Lose! ${computerSelection} beats ${playerSelection}`;
+        const compScoreBox = document.querySelector('.computer-scoreBox')
+        if (document.querySelector('.computer-scoreBox > div')){
+            compScoreBox.removeChild(compScoreBox.lastElementChild);
+        }
+        const scoreOnScreen = document.createElement('div');
+        scoreOnScreen.textContent = computerCount;
+        compScoreBox.appendChild(scoreOnScreen);
+        console.log(compScoreBox)
     }
 }
+
+let playerCount = 0, computerCount = 0;
+const playerBox = document.querySelector('.player-box')
+const playerBtns = document.querySelectorAll('.player-box > button')
+playerBtns.forEach(btn => btn.addEventListener('click', playRound))
