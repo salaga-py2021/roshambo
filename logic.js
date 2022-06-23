@@ -11,7 +11,10 @@ function properCase(word){
     return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
 }
 
-function playRound(playerSelection,computerSelection){
+function playRound(chosenButton){
+    let playerCount = 0, computerCount = 0;
+    let playerSelection = chosenButton.textContent;
+    let computerSelection = computerPlay();
     // Remove problem with case sensitivity.
     playerSelection = properCase(playerSelection);
 
@@ -22,34 +25,11 @@ function playRound(playerSelection,computerSelection){
              (playerSelection == "Paper" && computerSelection == "Rock") ||
              (playerSelection == "Scissor" && computerSelection == "Paper")) {
         
+        playerCount += 1
         return `You Win! ${playerSelection} beats ${computerSelection}`;
     }
     else {
+        computerCount += 1
         return `You Lose! ${computerSelection} beats ${playerSelection}`;
     }
-}
-
-function game(){
-    let playerCount = 0, computerCount = 0; 
-    for (let i = 0; i < 5; i++) {
-        let playerSelection = prompt("Choose Rock, Paper, or Scissor");
-        let computerSelection = computerPlay();
-        let playRoundResult = playRound(playerSelection,computerSelection);
-
-        // Print Round Result
-        console.log(playRoundResult);
-
-        // Score Round
-        if (playRoundResult.charAt(4) == "W") playerCount++;
-        else if (playRoundResult.charAt(4) == "L") computerCount++;
-
-        // Print New Score
-        console.log(`Player Score: ${playerCount}`);
-        console.log(`Computer Score: ${computerCount}`);
-    }
-
-    let finalMessage = (playerCount == computerCount) ? "The game is a tie" : 
-                       (playerCount > computerCount) ? "You win the game!" : "You lose the game"
-
-    console.log(finalMessage)
 }
