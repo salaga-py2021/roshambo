@@ -14,7 +14,19 @@ function properCase(word){
 function playRound(chosenButton){
     let playerSelection = properCase(String(this.textContent));
     let computerSelection = computerPlay();
-    console.log(playerSelection,computerSelection)
+    const playerScore = document.querySelector('.player-scoreBox > h3');
+    const compScore = document.querySelector('.computer-scoreBox > h3');
+    const newGame = document.querySelector('.new-game');
+
+    if (resetGame) {
+        playerCount = computerCount = 0;
+        playerScore.textContent = playerCount;
+        compScore.textContent = computerCount;
+        newGame.removeChild(newGame.firstElementChild)
+        playerBtns.forEach(btn => btn.disabled = false);
+        resetGame = false;
+        return 'Game is now Reset!'
+    }
 
     if (playerSelection == computerSelection) {
         return `It's a tie. You both chose ${playerSelection}`;
@@ -24,28 +36,30 @@ function playRound(chosenButton){
              (playerSelection == "Scissor" && computerSelection == "Paper")) {
         
         playerCount += 1;
-        const playerScoreBox = document.querySelector('.player-scoreBox')
-        if (document.querySelector('.player-scoreBox > div')){
-            playerScoreBox.removeChild(playerScoreBox.lastElementChild);
-        }
-        const scoreOnScreen = document.createElement('div');
-        scoreOnScreen.textContent = playerCount;
-        playerScoreBox.appendChild(scoreOnScreen);
+        playerScore.textContent = playerCount;
     }
     else {
-        computerCount += 1
-        const compScoreBox = document.querySelector('.computer-scoreBox')
-        if (document.querySelector('.computer-scoreBox > div')){
-            compScoreBox.removeChild(compScoreBox.lastElementChild);
-        }
-        const scoreOnScreen = document.createElement('div');
-        scoreOnScreen.textContent = computerCount;
-        compScoreBox.appendChild(scoreOnScreen);
-        console.log(compScoreBox)
+        computerCount += 1;
+        compScore.textContent = computerCount;
     }
+
+    if (computerCount == 5 || playerCount == 5) {
+        const winner = document.createElement('h1');
+        winner.textContent = (playerCount == 5) ? 'Winner: Player' : 'Winner: Computer'
+        newGame.insertBefore(winner,newGame.lastElementChild);
+        playerBtns.forEach(btn => btn.disabled = true);
+    }
+    
 }
 
 let playerCount = 0, computerCount = 0;
-const playerBox = document.querySelector('.player-box')
-const playerBtns = document.querySelectorAll('.player-box > button')
-playerBtns.forEach(btn => btn.addEventListener('click', playRound))
+let resetGame = false;
+const playerBox = document.querySelector('.player-box');
+const playerBtns = document.querySelectorAll('.player-box > button');
+playerBtns.forEach(btn => btn.addEventListener('click', playRound));
+
+let newGameBtn = document.querySelector('.new-game > button');
+newGameBtn.addEventListener('click', () => {
+    resetGame = true;
+    playRound();
+})
