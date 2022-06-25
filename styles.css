@@ -1,0 +1,111 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 98vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header {
+    display: flex;
+    text-align: center;
+    background-color: #DDAFA6;
+    color: black;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    font-size: larger;
+}
+
+.gameArena {
+    display: flex;
+    justify-content: space-around;
+    background-color: #D8DBE2;
+    padding: 30px ;
+    height: 250px;
+}
+
+.playerArea, 
+.compArea {
+    display: flex;
+    flex-direction: column;
+    border: solid 5px #481620;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.playerArea > h3, 
+.compArea > h3 {
+    margin: 0;
+    text-align: center;
+    background-color: lightgray;
+    padding: 8px;
+}
+
+.playerBtns > button, 
+.compBtns > button {
+    height: 150px;
+    width: 150px;
+    background-color: transparent;
+    color: black;
+    font-size: 21px;
+    font-weight: bold;
+    border: dashed thin #481620;
+}
+
+.playerBtns, 
+.compBtns {
+    padding: 30px;
+    margin-top: -20px;
+}
+
+.scoreArena {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: #373F51;
+    color: white
+}
+
+.displayScore {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+    height: 227px;
+}
+
+.playerScore, 
+.compScore {
+    height: 125px;
+    width: 500px;
+    background-color: #D8DBE2;
+    color: black
+}
+
+.playerScore > h3, 
+.compScore > h3 {
+    font-size: x-large;
+}
+
+.newGame {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 78px;
+    background-color: #DDAFA6;
+}
+
+.newGame > button {
+    height: 40px;
+    width: 150px;
+    font-weight: bold;
+    border: solid black;
+}
+
+.click {
+    border-color: #105028;
+    box-shadow: 0 0 1rem #105028;
+}

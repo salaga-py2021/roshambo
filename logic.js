@@ -14,19 +14,28 @@ function properCase(word){
 function playRound(chosenButton){
     let playerSelection = properCase(String(this.textContent));
     let computerSelection = computerPlay();
-    const playerScore = document.querySelector('.player-scoreBox > h3');
-    const compScore = document.querySelector('.computer-scoreBox > h3');
-    const newGame = document.querySelector('.new-game');
+    const playerScore = document.querySelector('.playerScore > h3');
+    const compScore = document.querySelector('.compScore > h3');
+    const newGame = document.querySelector('.newGame');
+    const winnerText = document.querySelector('.newGame > h1');
+    const compButton = document.querySelector(`.compBtns > .${computerSelection}`)
 
     if (resetGame) {
         playerCount = computerCount = 0;
         playerScore.textContent = playerCount;
         compScore.textContent = computerCount;
-        newGame.removeChild(newGame.firstElementChild)
+        winnerText.textContent = ''
         playerBtns.forEach(btn => btn.disabled = false);
         resetGame = false;
         return 'Game is now Reset!'
     }
+
+    this.classList.add('click');
+    compButton.classList.add('click')
+    setTimeout(() =>  {
+        this.classList.remove('click');
+        compButton.classList.remove('click');
+    }, 150);
 
     if (playerSelection == computerSelection) {
         return `It's a tie. You both chose ${playerSelection}`;
@@ -44,9 +53,7 @@ function playRound(chosenButton){
     }
 
     if (computerCount == 5 || playerCount == 5) {
-        const winner = document.createElement('h1');
-        winner.textContent = (playerCount == 5) ? 'Winner: Player' : 'Winner: Computer'
-        newGame.insertBefore(winner,newGame.lastElementChild);
+        winnerText.textContent = (playerCount == 5) ? 'Winner: Player' : 'Winner: Computer'
         playerBtns.forEach(btn => btn.disabled = true);
     }
     
@@ -54,11 +61,10 @@ function playRound(chosenButton){
 
 let playerCount = 0, computerCount = 0;
 let resetGame = false;
-const playerBox = document.querySelector('.player-box');
-const playerBtns = document.querySelectorAll('.player-box > button');
+const playerBtns = document.querySelectorAll('.playerBtns > button');
 playerBtns.forEach(btn => btn.addEventListener('click', playRound));
 
-let newGameBtn = document.querySelector('.new-game > button');
+let newGameBtn = document.querySelector('.newGame > button');
 newGameBtn.addEventListener('click', () => {
     resetGame = true;
     playRound();

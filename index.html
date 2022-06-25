@@ -6,33 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ro-Sham-Bo</title>
     <script src="logic.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header> Ro-Sham-Bo </header>
-    <div class = 'player-box'>
-        <h3> Player </h3>
-        <button id = 'playerRock'>rock</button>
-        <button id = 'playerPaper'>paper</button>
-        <button id = 'playerScissor'>scissor</button>
+    <div class = 'gameArena'>
+        <div class = 'playerArea'>
+            <h3> Player </h3>
+            <div class = 'playerBtns'>
+                <button class = 'Rock'>rock</button>
+                <button class = 'Paper'>paper</button>
+                <button class = 'Scissor'>scissor</button>
+            </div>
+        </div>
+        <div class = 'compArea'>
+            <h3> Computer </h3>
+            <div class = 'compBtns'>
+                <button class = 'Rock' disabled> rock </button>
+                <button class = 'Paper' disabled> paper </button>
+                <button class = 'Scissor' disabled> scissor </button>
+            </div>
+        </div>
     </div>
-    <div class = 'computer-box'>
-        <h3> Computer </h3>
-        <button id = 'computerRock' disabled> rock </button>
-        <button id = 'computerPaper' disabled> paper </button>
-        <button id = 'computerScissor' disabled> scissor </button>
-    </div>
-    <div class="score-box"> 
+    <div class= 'scoreArena'> 
         <h3> Score </h3>
-        <div class = 'player-scoreBox'>
-            <h4> Player </h4>
-            <h3>0</h3>
-        </div>
-        <div class= "computer-scoreBox">
-            <h4> Computer</h4> 
-            <h3>0</h3>
-        </div>
+        <div class = 'displayScore'>
+            <div class = 'playerScore'>
+                <h4> Player </h4>
+                <h3>0</h3>
+            </div>
+            <div class= "compScore">
+                <h4> Computer</h4> 
+                <h3>0</h3>
+            </div>
+        </div> 
     </div> 
-    <div class = "new-game"> 
+    <div class = "newGame"> 
+        <h1></h1>
         <button> New Game</button>
     </div>
 </body>
